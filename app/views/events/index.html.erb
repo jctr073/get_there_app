@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="col-md-4">
+        <% @events.each do |item| %>
+            <% if item.key?('event')  %>
+                <p class="event">
+                <span class="title"><%= item['event']['title'] %></span> <br/>
+                <%= item['event']['start_date'] %> <br/>
+                <span class="lat hidden"><%= item['event']['venue']['latitude'] %></span>
+                <span class="lng hidden"><%= item['event']['venue']['longitude'] %></span>
+                <%= link_to 'more info', item['event']['url'] %> <br/>
+                </p>
+            <% end %>
+        <% end %>
+
+      <pre><%= @events[5]['event']['venue']['latitude'] %></pre>
+    </div>
+    <div class="col-md-8">
+      <div id="map-canvas"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var myLatlng = new google.maps.LatLng(37.778687,-122.421242);
+
+        var mapOptions = {
+            center: { lat: 37.778687, lng: -122.421242},
+            zoom: 13
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Hello World!'
+        });
+
+        $('p.event').each(function() {
+            var title   = $(this).children('.title').html();
+            var lat     = $(this).children('.lat').html();
+            var lng     = $(this).children('.lng').html();
+
+            var nextMkr = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                map: map,
+                title: title
+            });
+        });
+
+    });
+
+</script>
