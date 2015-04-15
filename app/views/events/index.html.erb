@@ -1,7 +1,9 @@
 <div class="container">
     <div class="col-md-4">
+        <% i = 1 %>
         <% @events.each do |item| %>
             <% if item.key?('event')  %>
+
                 <div class="media event">
                   <a class="pull-left" href="#">
                     <img class="media-object img-thmb" src="<%= item['event']['logo']%>" alt=""/>
@@ -11,10 +13,13 @@
                     <%= item['event']['start_date'] %> <br/>
                     <span class="lat hidden"><%= item['event']['venue']['latitude'] %></span>
                     <span class="lng hidden"><%= item['event']['venue']['longitude'] %></span>
+                    <span class="nbr hidden"><%= i %></span>
                     <%= link_to 'more info', item['event']['url'] %> <br/>
                   </div>
 
                 </div>
+
+              <% i += i %>
             <% end %>
         <% end %>
 
@@ -39,11 +44,6 @@
         var map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
 
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!'
-        });
 
         $('div.event').each(function() {
             console.log(this);
