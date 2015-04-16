@@ -13,8 +13,6 @@ $(document).ready(function () {
             // Setup map
             var event1 = resp.events[1].event;
 
-            var myLatlng = new google.maps.LatLng(event1.venue.latitude, event1.venue.longitude);
-
             var mapOptions = {
                 center: { lat: event1.venue.latitude, lng: event1.venue.longitude},
                 zoom: 13
