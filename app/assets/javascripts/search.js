@@ -9,7 +9,7 @@ $(document).ready(function () {
         url: "/search.json",
         dataType: "json",
         success: function (resp) {
-            console.log(resp);
+            //console.log(resp);
             loadEvents(resp);
         }
     });
@@ -22,32 +22,21 @@ function loadEvents (col) {
         obj = events[i];
 
         if (obj.hasOwnProperty('event')) {
-            //console.log(obj.event.title);
-            writeEventListing(
-                $elm,
-                obj.event.title,
-                obj.event.logo,
-                obj.event.start_date,
-                obj.event.end_date
-            );
+            writeEventListing( $elm, obj.event );
         }
     }
 }
 
-function writeEventListing(domElm, title, logoPath, startDate, endDate) {
-    //console.log(title);
-    //$('<p></p>').appendTo(domElm).html('test');
+function writeEventListing($domElm, event) {
 
-    $media = $('<div class="media"></div>').appendTo(domElm);
+    $media = $('<div class="media"></div>').appendTo($domElm);
     $a     = $('<a class="pull-left" href="#"></a>').appendTo($media);
-    $img   = $('<img class="media-object" src="" alt="">').appendTo($a);
+    $img   = $('<img class="media-object img-thmb" src="'+ event.logo +'" alt="">').appendTo($a);
 
     $mbody = $('<div class="media-body"></div>').appendTo($media);
-    $h4    = $('<h4 class="media-heading">Something</h4>').appendTo($mbody);
+    $h5    = $('<h5 class="media-heading">'+ event.title +'</h5>').appendTo($mbody);
 
-    //$img.src(logoPath);
-    $h4.html(title);
-    //$mbody.html(startDate + " - " + endDate);
-    console.log($media);
+    //$($media).find('a.media-heading').html(event.title);
+    $mbody.append(event.startDate + " - " + event.endDate);
 
 }
