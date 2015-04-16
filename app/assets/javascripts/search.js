@@ -3,13 +3,25 @@
  */
 $(document).ready(function () {
     $elm = $('#event-list');
+    $map = $('#map-canvas');
 
     $.ajax({
         type: "GET",
         url: "/search.json",
         dataType: "json",
         success: function (resp) {
-            //console.log(resp);
+            // Setup map
+            var event1 = resp.events[1].event;
+
+            var myLatlng = new google.maps.LatLng(event1.venue.latitude, event1.venue.longitude);
+
+            var mapOptions = {
+                center: { lat: event1.venue.latitude, lng: event1.venue.longitude},
+                zoom: 13
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+
             loadEvents(resp);
         }
     });
@@ -23,6 +35,7 @@ function loadEvents (col) {
 
         if (obj.hasOwnProperty('event')) {
             writeEventListing( $elm, obj.event );
+            plotMapPoints( $map, event );
         }
     }
 }
@@ -38,5 +51,9 @@ function writeEventListing($domElm, event) {
 
     //$($media).find('a.media-heading').html(event.title);
     $mbody.append(event.startDate + " - " + event.endDate);
+
+}
+function plotMapPoints($map, event) {
+    //TODO: map the current event
 
 }

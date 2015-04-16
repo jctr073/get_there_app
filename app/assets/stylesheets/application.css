@@ -16,3 +16,10 @@ body { padding-top: 70px; }
     width: 64px;
     height: 64px;
 }
+#map-canvas {
+    height: 500px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: grey;
+}
