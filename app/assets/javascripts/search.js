@@ -48,7 +48,7 @@ function writeEventListing($domElm, event) {
     $h5    = $('<h5 class="media-heading">'+ event.title +'</h5>').appendTo($mbody);
 
     //$($media).find('a.media-heading').html(event.title);
-    $mbody.append(event.startDate + " - " + event.endDate);
+    $mbody.append(event.start_date + " - " + event.end_date);
 
 }
 function plotMapPoints(itr, gmap, curEvent) {
