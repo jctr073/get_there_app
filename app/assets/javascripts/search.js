@@ -33,11 +33,7 @@ function loadEvents (col, map) {
 
         if (obj.hasOwnProperty('event')) {
             writeEventListing( $elm, obj.event );
-<<<<<<< HEAD
-            plotMapPoints( $map, obj.event );
-=======
             plotMapPoints( i, map, obj.event );
->>>>>>> be30e5c9c592ae5d8f446fce4602604aa8c30f59
         }
     }
 }
@@ -55,11 +51,8 @@ function writeEventListing($domElm, event) {
     $mbody.append(event.start_date + " - " + event.end_date);
 
 }
-<<<<<<< HEAD
-function plotMapPoints($map, curEvent) {
-=======
+
 function plotMapPoints(itr, gmap, curEvent) {
->>>>>>> be30e5c9c592ae5d8f446fce4602604aa8c30f59
     //TODO: map the current event
     
   //  var count = 0; //generate numbers for markers 

@@ -1,6 +1,6 @@
 GetThereApp::Application.routes.draw do
 
-  root 'events#index'
+  root 'events#search'
   get 'search' => 'events#search'
 
   # The priority is based upon order of creation: first created -> highest priority.
