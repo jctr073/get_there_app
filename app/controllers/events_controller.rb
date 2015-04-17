@@ -3,14 +3,13 @@ class EventsController < ApplicationController
   require 'json'
 
   def index
-    clt = EventbriteClient.new({ access_token: '2GT6L3NCHSCTQQREGLKO'})
-    resp = clt.event_search(city: "San Francisco", date: "Next Month", keywords: "DJ Clubbing")
-    @events = resp['events']
+    render :search
   end
 
   def search
+    words = params[:search][:keywords] || ""
     clt = EventbriteClient.new({ access_token: '2GT6L3NCHSCTQQREGLKO'})
-    resp = clt.event_search(city: "San Francisco", date: "Next Month", keywords: "DJ Clubbing")
+    resp = clt.event_search(city: "San Francisco", date: "Next Month", keywords: words)
 
     respond_to do |format|
       format.html { render html: resp }
@@ -18,7 +17,4 @@ class EventsController < ApplicationController
     end
   end
 
-  def raw
-    get 'https://www.eventbriteapi.com/v3/events/search/?q=dj+clubbing&venue.city=San+Francisco&venue.region=California&token=2GT6L3NCHSCTQQREGLKO'
-  end
 end

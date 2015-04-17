@@ -2,31 +2,38 @@
  * Created by jctr073 on 4/14/15.
  */
 $(document).ready(function () {
+    $wel = $('#welcome');
     $elm = $('#event-list');
     $map = $('#map-canvas');
 
-    $.ajax({
-        type: "GET",
-        url: "/search.json",
-        dataType: "json",
-        success: function (resp) {
-            // Setup map
-            var event1 = resp.events[1].event;
 
-            var mapOptions = {
-                center: { lat: event1.venue.latitude, lng: event1.venue.longitude},
-                zoom: 13
-            };
-             var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
+    $('#search').click(function(){
+        $wel.addClass("hidden");
+        $.ajax({
+            type: "POST",
+            url: "/search.json",
+            dataType: "json",
+            data: { search: { keywords: $('#keywords').val() } },
+            success: function (resp) {
+                // Setup map
+                var event1 = resp.events[1].event;
 
-            loadEvents(resp, map);
-        }
-    });
+                var mapOptions = {
+                    center: { lat: event1.venue.latitude, lng: event1.venue.longitude},
+                    zoom: 13
+                };
+                var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+
+                loadEvents(resp, map);
+            }
+        });
+    })
+
 });
 
 function loadEvents (col, map) {
-
+    $elm.empty();
     var events = col.events;
     for (var i = 1; i < events.length; i++) {
         obj = events[i];
@@ -40,12 +47,12 @@ function loadEvents (col, map) {
 
 function writeEventListing($domElm, event) {
 
-    $media = $('<div class="media"></div>').appendTo($domElm);
-    $a     = $('<a class="pull-left" href="#"></a>').appendTo($media);
-    $img   = $('<img class="media-object img-thmb" src="'+ event.logo +'" alt="">').appendTo($a);
+    var $media = $('<div class="media"></div>').appendTo($domElm);
+    var $a     = $('<a class="pull-left" href="#"></a>').appendTo($media);
+    var $img   = $('<img class="media-object img-thmb" src="'+ event.logo +'" alt="">').appendTo($a);
 
-    $mbody = $('<div class="media-body"></div>').appendTo($media);
-    $h5    = $('<h5 class="media-heading">'+ event.title +'</h5>').appendTo($mbody);
+    var $mbody = $('<div class="media-body"></div>').appendTo($media);
+    var $h5    = $('<h5 class="media-heading">'+ event.title +'</h5>').appendTo($mbody);
 
     //$($media).find('a.media-heading').html(event.title);
     $mbody.append(event.start_date + " - " + event.end_date);
@@ -72,5 +79,4 @@ function plotMapPoints(itr, gmap, curEvent) {
             });
             
             console.log(itr+" "+lat+" "+lng);
-
 }
