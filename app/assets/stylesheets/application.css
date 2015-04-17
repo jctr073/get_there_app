@@ -17,8 +17,10 @@ body { padding-top: 70px; }
     height: 64px;
 }
 #map-canvas {
-    height: 500px;
-    width: 100%;
+    min-height: 500px;
+    max-height: 80%;
+    min-width: 300px;
+    max-width: 80%;
     margin: 0px;
     padding: 0px;
     background-color: grey;

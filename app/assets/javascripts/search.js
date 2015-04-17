@@ -33,7 +33,7 @@ function loadEvents (col) {
 
         if (obj.hasOwnProperty('event')) {
             writeEventListing( $elm, obj.event );
-            plotMapPoints( $map, event );
+            plotMapPoints( $map, obj.event );
         }
     }
 }
@@ -51,7 +51,7 @@ function writeEventListing($domElm, event) {
     $mbody.append(event.start_date + " - " + event.end_date);
 
 }
-function plotMapPoints($map, event) {
+function plotMapPoints($map, curEvent) {
     //TODO: map the current event
 
 }
