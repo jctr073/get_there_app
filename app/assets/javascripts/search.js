@@ -17,15 +17,15 @@ $(document).ready(function () {
                 center: { lat: event1.venue.latitude, lng: event1.venue.longitude},
                 zoom: 13
             };
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
+             var map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
 
-            loadEvents(resp);
+            loadEvents(resp, map);
         }
     });
 });
 
-function loadEvents (col) {
+function loadEvents (col, map) {
 
     var events = col.events;
     for (var i = 1; i < events.length; i++) {
@@ -33,7 +33,11 @@ function loadEvents (col) {
 
         if (obj.hasOwnProperty('event')) {
             writeEventListing( $elm, obj.event );
+<<<<<<< HEAD
             plotMapPoints( $map, obj.event );
+=======
+            plotMapPoints( i, map, obj.event );
+>>>>>>> be30e5c9c592ae5d8f446fce4602604aa8c30f59
         }
     }
 }
@@ -51,7 +55,29 @@ function writeEventListing($domElm, event) {
     $mbody.append(event.start_date + " - " + event.end_date);
 
 }
+<<<<<<< HEAD
 function plotMapPoints($map, curEvent) {
+=======
+function plotMapPoints(itr, gmap, curEvent) {
+>>>>>>> be30e5c9c592ae5d8f446fce4602604aa8c30f59
     //TODO: map the current event
+    
+  //  var count = 0; //generate numbers for markers 
+      var icon1 = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='; //#building icon
+      var icon2 = '|FF0000|000000'; //building icon
+      var lat = curEvent.venue.latitude;
+      var lng = curEvent.venue.longitude;
+      var title = curEvent.title;
+       // console.log($map);
+        
+    
+     var nextMkr = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                map: gmap,
+                icon: icon1+itr+icon2, //creating unique markers dynamically 
+                title: title
+            });
+            
+            console.log(itr+" "+lat+" "+lng);
 
 }
