@@ -54,13 +54,19 @@ function writeEventListing($domElm, event) {
 function plotMapPoints(itr, gmap, curEvent) {
     //TODO: map the current event
     
-  //  var count = 0; //generate numbers for markers 
-      var icon1 = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='; //#building icon
+                                               //variables for markers
+      var icon1 = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='; //building icon
       var icon2 = '|FF0000|000000'; //building icon
       var lat = curEvent.venue.latitude;
       var lng = curEvent.venue.longitude;
       var title = curEvent.title;
        // console.log($map);
+       
+       var veName = curEvent.venue.name;
+       var veAddr = curEvent.venue.address;
+       var veCity = curEvent.venue.city;
+       var ev_sd  = curEvent.start_date;
+       var ev_ed  = curEvent.end_date; 
         
     
      var nextMkr = new google.maps.Marker({
@@ -70,6 +76,18 @@ function plotMapPoints(itr, gmap, curEvent) {
                 title: title
             });
             
-            console.log(itr+" "+lat+" "+lng);
+              var infoWindowOptions = {
+                content: veName+"<br />"+veAddr+"<br />"+veCity+"<br />"+
+                'Starts: '+ev_sd+"<br />"+'Ends: '+ev_ed
+            };
+            
+            var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+            
+            google.maps.event.addListener(nextMkr,'click',function(e){
+              infoWindow.open(map, nextMkr);
+  
+            });
+            
+           // console.log(itr+" "+lat+" "+lng);
 
 }
