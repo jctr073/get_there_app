@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   def search
     words = params[:search][:keywords] || ""
     clt = EventbriteClient.new({ access_token: '2GT6L3NCHSCTQQREGLKO'})
-    resp = clt.event_search(city: "San Francisco", date: "Next Month", keywords: words)
+    resp = clt.event_search(city: "San Francisco", keywords: words, sort_by: "date")
 
     respond_to do |format|
       format.html { render html: resp }

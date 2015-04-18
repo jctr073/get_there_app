@@ -13,8 +13,8 @@
  */
 body { padding-top: 70px; }
 .img-thmb {
-    width: 64px;
-    height: 64px;
+    max-width: 64px;
+    max-height: 64px;
 }
 #map-canvas {
     min-height: 500px;
