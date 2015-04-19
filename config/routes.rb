@@ -2,6 +2,7 @@ GetThereApp::Application.routes.draw do
 
   root 'events#index'
   get 'search' => 'events#search'
+  get 'old-search' => 'events#old_search'
   post 'search' => 'events#search'
 
   get 'query' => 'events#query'

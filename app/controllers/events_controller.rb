@@ -8,10 +8,10 @@ class EventsController < ApplicationController
   end
 
   def old_search
-    words = params[:search][:keywords] || ""
+    # words = params[:search][:keywords] || ""
 
     clt = EventbriteClient.new({ access_token: '2GT6L3NCHSCTQQREGLKO'})
-    resp = clt.event_search(city: "San Francisco", keywords: words, sort_by: "date", date: "2015-06-01 2015-08-01")
+    resp = clt.event_search(region: "CA", keywords: "wine")
 
     respond_to do |format|
       format.html { render html: resp }
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def search
+  def search_v2
     base = 'https://www.eventbriteapi.com/v3/'
     mthd = 'events/search/'
 
@@ -29,11 +29,24 @@ class EventsController < ApplicationController
       kywrd = ""
     end
 
-    qry  = "?#{kywrd}venue.city=San+Francisco&venue.region=California&"
+    qry  = "?#{kywrd}venue.city=San+Francisco&venue.region=CA&"
     p(qry)
     token = 'token=2GT6L3NCHSCTQQREGLKO'
     api_url  = base + mthd + qry + token
     resp = HTTParty.get(api_url)
+
+    respond_to do |format|
+      format.json { render json: resp }
+    end
+  end
+
+  def search
+    eb = EventbriteV3.new
+    eb.keywords = params[:search][:keywords]
+    eb.add_param('venue.city', 'San Francisco')
+    eb.add_param('venue.region', 'CA')
+
+    resp = eb.event_search
 
     respond_to do |format|
       format.json { render json: resp }

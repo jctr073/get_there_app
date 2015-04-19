@@ -12,8 +12,8 @@ $(document).ready(function () {
         }
     })
 
-    $('#search').click(function(e){
-        //e.preventDefault();
+    $('#search').click(function(){
+
         console.log('startDate: ' + $('#startDate').val());
         $wel.addClass("hidden");
         $.ajax({
