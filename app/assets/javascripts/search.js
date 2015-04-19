@@ -6,8 +6,15 @@ $(document).ready(function () {
     $elm = $('#event-list');
     $map = $('#map-canvas');
 
+    $('#frmSearch').keypress(function (event) {
+        if (event.which == 13) {
+            $('#search').trigger('click');
+        }
+    })
 
-    $('#search').click(function(){
+    $('#search').click(function(e){
+        //e.preventDefault();
+        console.log('startDate: ' + $('#startDate').val());
         $wel.addClass("hidden");
         $.ajax({
             type: "POST",
@@ -15,54 +22,68 @@ $(document).ready(function () {
             dataType: "json",
             data: { search: { keywords: $('#keywords').val() } },
             success: function (resp) {
-                // Setup map
-                var event1 = resp.events[1].event;
 
-                var mapOptions = {
-                    center: { lat: event1.venue.latitude, lng: event1.venue.longitude},
-                    zoom: 13
-                };
-                var map = new google.maps.Map(document.getElementById('map-canvas'),
-                    mapOptions);
+                if (resp.pagination.object_count > 0) {
+                    // Setup map
+                    var event1 = resp.events[0];
+                    console.log(event1);
+                    var mapOptions = {
+                        center: { lat: Number(event1.venue.latitude), lng: Number(event1.venue.longitude)},
+                        zoom: 13
+                    };
+                    var map = new google.maps.Map(document.getElementById('map-canvas'),
+                        mapOptions);
 
-                loadEvents(resp, map);
+                    loadEvents(resp, map);
+                } else {
+                    noResults();
+                }
+
             }
         });
     })
 
 });
 
-function loadEvents (col, map) {
+function noResults () {
     $elm.empty();
-    var events = col.events;
-    for (var i = 1; i < events.length; i++) {
-        obj = events[i];
-
-        if (obj.hasOwnProperty('event')) {
-            writeEventListing( $elm, obj.event );
-            plotMapPoints( i, map, obj.event );
-        }
+    $map.empty();
+    $elm.html("No results for search.");
+}
+function loadEvents (resp, map) {
+    $elm.empty();
+    var events = resp.events;
+    for (var i = 0; i < events.length; i++) {
+        curEvent = events[i];
+        writeEventListing( $elm, curEvent );
+        plotMapPoints( i, map, curEvent );
     }
 }
 
-function writeEventListing($domElm, event) {
+function writeEventListing($domElm, curEvent) {
 
     var $media = $('<div class="media"></div>').appendTo($domElm);
     var $a     = $('<a class="pull-left" href="#"></a>').appendTo($media);
-    var $img   = $('<img class="media-object img-thmb" src="'+ event.logo +'" alt="">').appendTo($a);
+
+    if (curEvent.logo != null) {
+        var $img   = $('<img class="media-object img-thmb" src="'+ curEvent.logo.url +'" alt="">').appendTo($a);
+    }
 
     var $mbody = $('<div class="media-body"></div>').appendTo($media);
-    var $h5    = $('<h5 class="media-heading">'+ event.title +'</h5>').appendTo($mbody);
+    var $h5    = $('<h5 class="media-heading">'+ curEvent.name.text +'</h5>').appendTo($mbody);
 
-    //$($media).find('a.media-heading').html(event.title);
-    $mbody.append(event.start_date + " - " + event.end_date);
+    //$($media).find('a.media-heading').html(curEvent.title);
+    //$mbody.append(curEvent.category.name + "<br>");
+    $mbody.append("Start: " + formatDate12HR(curEvent.start.local) + "<br>");
+    $mbody.append("End:   " + formatDate12HR(curEvent.end.local));
 
 }
 
 function plotMapPoints(itr, gmap, curEvent) {
-    //TODO: map the current event
-    
-                                               //variables for markers
+
+
+      //variables for markers
+    itr++;
       var icon1 = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='; //building icon
       var icon2 = '|FF0000|000000'; //building icon
       var lat = curEvent.venue.latitude;
@@ -71,10 +92,10 @@ function plotMapPoints(itr, gmap, curEvent) {
        // console.log($map);
        
        var veName = curEvent.venue.name;
-       var veAddr = curEvent.venue.address;
-       var veCity = curEvent.venue.city;
-       var ev_sd  = formatDate12HR(curEvent.start_date);
-       var ev_ed  = formatDate12HR(curEvent.end_date); 
+       var veAddr = curEvent.venue.address.address_1;
+       var veCity = curEvent.venue.address.city;
+       var ev_sd  = formatDate12HR(curEvent.start.local);
+       var ev_ed  = formatDate12HR(curEvent.end.local);
         
     
      var nextMkr = new google.maps.Marker({
