@@ -128,6 +128,17 @@ function plotMapPoints(itr, gmap, curEvent) {
   
             });
             
+            google.maps.event.addListener(nextMkr, 'mouseover', function() {
+        	infoWindow.open(gmap, this);
+
+            });
+            
+           
+            google.maps.event.addListenerOnce(gmap, 'mousemove', function(){
+            infoWindow.close();
+      });
+
+            
            
 
 }
