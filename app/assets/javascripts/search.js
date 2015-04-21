@@ -12,7 +12,7 @@ $(document).ready(function () {
         }
     })
     
-    $('#new-search').keypress(function (event) {  //adding reload functionality to the "new search" button
+    $('#new-search').click(function (event) {  //adding reload functionality to the "new search" button
         window.location.reload();
     })
 
