@@ -11,6 +11,11 @@ $(document).ready(function () {
             $('#search').trigger('click');
         }
     })
+    
+    $('#new-search').keypress(function (event) {  //adding reload functionality to the "new search" button
+        window.location.reload();
+    })
+
 
     $('#search').click(function(){
 
@@ -101,6 +106,7 @@ function plotMapPoints(itr, gmap, curEvent) {
        var veCity = curEvent.venue.address.city;
        var ev_sd  = formatDate12HR(curEvent.start.local);
        var ev_ed  = formatDate12HR(curEvent.end.local);
+       var ev_url = curEvent.url;
         
     
      var nextMkr = new google.maps.Marker({
@@ -112,7 +118,8 @@ function plotMapPoints(itr, gmap, curEvent) {
 
               var infoWindowOptions = {
                 content: veName+"<br />"+veAddr+"<br />"+veCity+"<br />"+
-                'Starts: '+ev_sd+"<br />"+'Ends: '+ev_ed
+                'Starts: '+ev_sd+"<br />"+'Ends: '+ev_ed + "<br />"+
+                '<a href="'+ ev_url +'" target="_blank">more info</a>' //modifying external url functionality
             };
             
             var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
