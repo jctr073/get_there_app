@@ -1,66 +1,16 @@
+<%= javascript_include_tag "search" %>
 <div class="container">
-    <div class="col-md-4">
-        <% i = 1 %>
-        <% @events.each do |item| %>
-            <% if item.key?('event')  %>
-
-                <div class="media event">
-                  <a class="pull-left" href="#">
-                    <img class="media-object img-thmb" src="<%= item['event']['logo']%>" alt=""/>
-                  </a>
-                  <div class="media-body">
-                    <h5 class="media-heading title"><%= item['event']['title'] %></h5>
-                    <%= item['event']['start_date'] %> <br/>
-                    <span class="lat hidden"><%= item['event']['venue']['latitude'] %></span>
-                    <span class="lng hidden"><%= item['event']['venue']['longitude'] %></span>
-                    <span class="nbr hidden"><%= i %></span>
-                    <%= link_to 'more info', item['event']['url'] %> <br/>
-                  </div>
-
-                </div>
-
-              <% i += i %>
-            <% end %>
-        <% end %>
-
-      <pre><%= @events[5]['event']['venue']['latitude'] %></pre>
+    <div class="col-md-12" id="welcome">
+      <div class="jumbotron">
+        <h1>Welcome</h1>
+        <p>Enter a keyword and click search.</p>
+      </div>
     </div>
-    <div class="col-md-8">
-      <div id="map-canvas"></div>
+    <div class="row">
+      <div class="col-md-4" id="event-list">
+      </div>
+      <div id="map-canvas" class="col-md-8">
+      </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        //Get lag/lng of first entry
-        var firstLat = Number($('div.event span.lat').first().html());
-        var firstLng = Number($('div.event span.lng').first().html());
 
-        var myLatlng = new google.maps.LatLng(firstLat, firstLng);
-
-        var mapOptions = {
-            center: { lat: firstLat, lng: firstLng},
-            zoom: 13
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
-                
-                
-
-
-        $('div.event').each(function() {
-            console.log(this);
-
-            var title = $(this).first().find('.title').html();
-            var lat   = Number($(this).first().find('span.lat').html());
-            var lng   = Number($(this).first().find('span.lng').html());
-
-            var nextMkr = new google.maps.Marker({
-                position: new google.maps.LatLng(lat, lng),
-                map: map,
-                title: title
-            });
-        });
-
-    });
-
-</script>
