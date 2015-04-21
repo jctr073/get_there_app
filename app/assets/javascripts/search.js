@@ -116,18 +116,62 @@ function plotMapPoints(itr, gmap, curEvent) {
                 title: title
             });
 
-              var infoWindowOptions = {
-                content: veName+"<br />"+veAddr+"<br />"+veCity+"<br />"+
+              var infoWindowOptions = { 
+                content: '<div id="infodiv">'+ veName+"<br />"+veAddr+"<br />"+veCity+"<br />"+
                 'Starts: '+ev_sd+"<br />"+'Ends: '+ev_ed + "<br />"+
-                '<a href="'+ ev_url +'" target="_blank">more info</a>' //modifying external url functionality
+                '<a href="'+ ev_url +'" target="_blank">more info</a>'+'</div>' //modifying external url functionality
             };
             
             var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
             
             google.maps.event.addListener(nextMkr,'click',function(e){
-              infoWindow.open(gmap, nextMkr);
+              infoWindow.open(gmap, this);
   
             });
+            
+            google.maps.event.addListener(nextMkr, 'mouseover', function () {
+            infoWindow.open(gmap, nextMkr);
+            });
+            
+            var t;
+            
+            google.maps.event.addListener(nextMkr, 'mouseout', function () {
+             t = setTimeout(function () {
+             infoWindow.close()
+             }, 1000);
+            });
+            
+            google.maps.event.addListener(infoWindow, 'domready', function () {
+            $('#infodiv').on('mouseenter', function () {
+            clearTimeout(t);
+            }).on('mouseleave', function () {
+            t = setTimeout(function () {
+            infoWindow.close()
+            }, 1000);
+            });
+            });
+
+            
+            // google.maps.event.addListener(gmap, 'mouseover', function(e){ //fires when mouse exits map container
+            // infoWindow.open(gmap,this);
+            // });
+            
+        //     google.maps.event.addListener(nextMkr, 'mousemove', function(e) { //fires when mouse moves over map container
+        // 	infoWindow.open(gmap, this);
+
+        //     });
+            
+        //     google.maps.event.addListener(infoWindow, 'mouseout', (function(e) {        
+        //     this.close();
+        //     }));
+
+            // google.maps.event.addListener(infoWindow, 'mouseout', (function(e) {        
+            // this.close();
+            // }));
+            
+           
+            
+
             
            
 
