@@ -27,7 +27,8 @@ $(document).ready(function () {
             dataType: "json",
             data: { search: {
                     keywords: $('#keywords').val(),
-                    city: $('#city').val()
+                    city: $('#city').val(),
+                    state: $('#state').val()
                 }
             },
             success: function (resp) {

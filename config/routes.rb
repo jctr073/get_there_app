@@ -2,9 +2,7 @@ GetThereApp::Application.routes.draw do
 
   root 'events#index'
   get 'search' => 'events#search'
-  get 'old-search' => 'events#old_search'
   post 'search' => 'events#search'
-
   get 'query' => 'events#query'
 
   # The priority is based upon order of creation: first created -> highest priority.

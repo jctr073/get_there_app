@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   require 'json'
 
   def index
-    render :search
   end
 
   def old_search
@@ -44,7 +43,7 @@ class EventsController < ApplicationController
     eb = EventbriteV3.new
     eb.keywords = params[:search][:keywords]
     eb.add_param('venue.city', params[:search][:city])
-    eb.add_param('venue.region', 'CA')
+    eb.add_param('venue.region', params[:search][:state])
 
     resp = eb.event_search
 
