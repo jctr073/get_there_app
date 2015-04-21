@@ -20,7 +20,11 @@ $(document).ready(function () {
             type: "POST",
             url: "/search.json",
             dataType: "json",
-            data: { search: { keywords: $('#keywords').val() } },
+            data: { search: {
+                    keywords: $('#keywords').val(),
+                    city: $('#city').val()
+                }
+            },
             success: function (resp) {
 
                 if (resp.pagination.object_count > 0) {

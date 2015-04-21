@@ -43,7 +43,7 @@ class EventsController < ApplicationController
   def search
     eb = EventbriteV3.new
     eb.keywords = params[:search][:keywords]
-    eb.add_param('venue.city', 'San Francisco')
+    eb.add_param('venue.city', params[:search][:city])
     eb.add_param('venue.region', 'CA')
 
     resp = eb.event_search

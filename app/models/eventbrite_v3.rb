@@ -9,8 +9,8 @@ class EventbriteV3
     @auth_token = token
   end
 
-  def keywords=values
-    values.split(" ").each do |val|
+  def keywords=value
+    value.split(" ").each do |val|
       @keywords.push(val)
     end
   end
@@ -35,5 +35,5 @@ class EventbriteV3
     url = @base_uri + 'events/search/?' + keywords + '&' + params + '&token=' + @auth_token
     HTTParty.get(url)
   end
- # 2GT6L3NCHSCTQQREGLKO
+
 end
