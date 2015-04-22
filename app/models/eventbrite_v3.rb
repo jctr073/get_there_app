@@ -24,7 +24,7 @@ class EventbriteV3
   end
 
   def add_param(key, value)
-    @params.store(key, value)
+    @params.store(key, value) if value != ""
   end
 
   def params
@@ -32,7 +32,9 @@ class EventbriteV3
   end
 
   def event_search
-    url = @base_uri + 'events/search/?' + keywords + '&' + params + '&token=' + @auth_token
+    url = @base_uri + 'events/search/?' +
+        keywords + '&sort_by=date&' + params +
+        '&token=' + @auth_token
     HTTParty.get(url)
   end
 

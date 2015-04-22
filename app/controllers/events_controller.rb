@@ -44,6 +44,8 @@ class EventsController < ApplicationController
     eb.keywords = params[:search][:keywords]
     eb.add_param('venue.city', params[:search][:city])
     eb.add_param('venue.region', params[:search][:state])
+    eb.add_param('start_date.range_start', Time.zone.parse(params[:search][:fromDt]).utc)
+    eb.add_param('start_date.range_end', Time.zone.parse(params[:search][:toDt]).utc)
 
     resp = eb.event_search
 

@@ -10,11 +10,11 @@ $(document).ready(function () {
         if (event.which == 13) {
             $('#search').trigger('click');
         }
-    })
+    });
     
-    $('#new-search').keypress(function (event) {  //adding reload functionality to the "new search" button
+    $('#new-search').click(function() {  //adding reload functionality to the "new search" button
         window.location.reload();
-    })
+    });
 
 
     $('#search').click(function(){
@@ -28,7 +28,9 @@ $(document).ready(function () {
             data: { search: {
                     keywords: $('#keywords').val(),
                     city: $('#city').val(),
-                    state: $('#state').val()
+                    state: $('#state').val(),
+                    fromDt: $('#fromDt').val(),
+                    toDt: $('#toDt').val()
                 }
             },
             success: function (resp) {
