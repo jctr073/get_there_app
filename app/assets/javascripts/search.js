@@ -108,6 +108,8 @@ function plotMapPoints(itr, gmap, curEvent) {
        var ev_sd  = formatDate12HR(curEvent.start.local);
        var ev_ed  = formatDate12HR(curEvent.end.local);
        var ev_url = curEvent.url;
+       
+       var t;
         
     
      var nextMkr = new google.maps.Marker({
@@ -134,7 +136,7 @@ function plotMapPoints(itr, gmap, curEvent) {
             infoWindow.open(gmap, nextMkr);
             });
             
-            var t;
+            
             
             google.maps.event.addListener(nextMkr, 'mouseout', function () {
              t = setTimeout(function () {
