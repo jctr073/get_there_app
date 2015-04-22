@@ -35,6 +35,7 @@ class EventbriteV3
     url = @base_uri + 'events/search/?' +
         keywords + '&sort_by=date&' + params +
         '&token=' + @auth_token
+
     HTTParty.get(url)
   end
 

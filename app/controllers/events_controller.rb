@@ -40,12 +40,13 @@ class EventsController < ApplicationController
   end
 
   def search
+    p params
     eb = EventbriteV3.new
     eb.keywords = params[:search][:keywords]
     eb.add_param('venue.city', params[:search][:city])
     eb.add_param('venue.region', params[:search][:state])
-    eb.add_param('start_date.range_start', Time.zone.parse(params[:search][:fromDt]).utc)
-    eb.add_param('start_date.range_end', Time.zone.parse(params[:search][:toDt]).utc)
+    eb.add_param('start_date.range_start', con_date(params[:search][:fromDt]))
+    eb.add_param('start_date.range_end', con_date(params[:search][:toDt]))
 
     resp = eb.event_search
 
@@ -54,4 +55,8 @@ class EventsController < ApplicationController
     end
   end
 
+  private
+    def con_date(value)
+      Time.zone.parse(value).utc.strftime("%Y-%m-%dT%TZ")
+    end
 end
