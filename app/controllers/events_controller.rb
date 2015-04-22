@@ -57,6 +57,11 @@ class EventsController < ApplicationController
 
   private
     def con_date(value)
-      Time.zone.parse(value).utc.strftime("%Y-%m-%dT%TZ")
+      if value == ""
+        return ""
+      else
+        Time.zone.parse(value).utc.strftime("%Y-%m-%dT%TZ")
+      end
+
     end
 end

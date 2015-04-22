@@ -12,10 +12,9 @@ $(document).ready(function () {
         }
     });
 
-    $('#new-search').click(function() {  //adding reload functionality to the "new search" button
+    $('#clear').click(function() {  //adding reload functionality to the "new search" button
         window.location.reload();
     });
-
 
     $('#search').click(function(){
 
