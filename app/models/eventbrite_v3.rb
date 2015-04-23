@@ -1,7 +1,6 @@
 class EventbriteV3
   include HTTParty
 
-
   def initialize(token = '2GT6L3NCHSCTQQREGLKO')
     @base_uri   = 'https://www.eventbriteapi.com/v3/'
     @keywords   = Array.new

@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     $('#search').click(function(){
 
-        console.log('startDate: ' + $('#startDate').val());
+        alert('hi');
         $wel.addClass("hidden");
         $.ajax({
             type: "POST",

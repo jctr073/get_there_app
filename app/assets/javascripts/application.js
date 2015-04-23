@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //  danabase was here
-//
+
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
