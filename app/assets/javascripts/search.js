@@ -124,10 +124,10 @@ function plotMapPoints(itr, gmap, curEvent) {
             
             var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
             
-            google.maps.event.addListener(nextMkr,'click',function(e){
-              infoWindow.open(gmap, this);
+            // google.maps.event.addListener(nextMkr,'click',function(e){
+            //   infoWindow.open(gmap, this);
   
-            });
+            // });
             
             google.maps.event.addListener(nextMkr, 'mouseover', function () {
             infoWindow.open(gmap, nextMkr);
