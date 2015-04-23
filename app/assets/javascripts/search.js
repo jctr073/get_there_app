@@ -65,12 +65,12 @@ function loadEvents (resp, map) {
     var events = resp.events;
     for (var i = 0; i < events.length; i++) {
         curEvent = events[i];
-        writeEventListing( $elm, curEvent );
+        writeEventListing( $elm, curEvent, i );
         plotMapPoints( i, map, curEvent );
     }
 }
 
-function writeEventListing($domElm, curEvent) {
+function writeEventListing($domElm, curEvent, i) {
 
     var $media = $('<div class="media"></div>').appendTo($domElm);
     var $a     = $('<a class="pull-left" href="#"></a>').appendTo($media);
@@ -80,7 +80,7 @@ function writeEventListing($domElm, curEvent) {
     }
 
     var $mbody = $('<div class="media-body"></div>').appendTo($media);
-    var $h5    = $('<h5 class="media-heading">'+ curEvent.name.text +'</h5>').appendTo($mbody);
+    var $h5    = $('<h5 class="media-heading">'+ i +'. ' + curEvent.name.text +'</h5>').appendTo($mbody);
 
     //$($media).find('a.media-heading').html(curEvent.title);
     //$mbody.append(curEvent.category.name + "<br>");
