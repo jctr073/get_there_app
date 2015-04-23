@@ -18,7 +18,6 @@ $(document).ready(function () {
 
     $('#search').click(function(){
 
-        alert('hi');
         $wel.addClass("hidden");
         $.ajax({
             type: "POST",
