@@ -72,6 +72,7 @@ function loadEvents (resp, map) {
 
 function writeEventListing($domElm, curEvent, i) {
 
+    i++;
     var $media = $('<div class="media"></div>').appendTo($domElm);
     var $a     = $('<a class="pull-left" href="#"></a>').appendTo($media);
 
