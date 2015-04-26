@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def index
   end
-  
+
   def search
     p params
     eb = EventbriteV3.new

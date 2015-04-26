@@ -69,8 +69,35 @@ function loadEvents (resp, map) {
         plotMapPoints( i, map, curEvent );
     }
 }
-
 function writeEventListing($domElm, curEvent, i) {
+    i++;
+    var doc     = window.document;
+    var media   = doc.createElement("div");
+    var a       = doc.createElement("a");
+    var mbody   = doc.createElement("div");
+    var h5      = doc.createElement("h5");
+
+    media.className = "media";
+    a.className     = "pull-left";
+    mbody.className = "media-body";
+    h5.className    = "media-heading";
+    h5.innerText    = i + ": " + curEvent.name.text;
+    $domElm[0].appendChild(media);
+
+    media.appendChild(a);
+    if (curEvent.logo != null) {
+        var img       = doc.createElement("img");
+        img.src       = curEvent.logo.url;
+        img.className = "media-object img-thmb";
+        a.appendChild(img);
+    }
+    media.appendChild(mbody);
+    mbody.appendChild(h5);
+    $(mbody).append("Start: " + formatDate12HR(curEvent.start.local) + "<br>");
+    $(mbody).append("End:   " + formatDate12HR(curEvent.end.local));
+}
+
+function writeEventListing2($domElm, curEvent, i) {
 
     i++;
     var $media = $('<div class="media"></div>').appendTo($domElm);

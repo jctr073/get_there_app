@@ -25,14 +25,14 @@
     <favorites_list name="get_there_app" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4419983">
+    <splitter split-orientation="horizontal" split-proportion="0.16172735">
       <split-first>
         <leaf>
           <file leaf-file-name="events_controller.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/controllers/events_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.14933333" vertical-offset="0" max-vertical-offset="750">
-                  <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+                <state vertical-scroll-proportion="0.46933332" vertical-offset="0" max-vertical-offset="750">
+                  <caret line="22" column="5" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -92,21 +92,21 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="eventbrite_v3.rb" pinned="false" current-in-tab="true">
+          <file leaf-file-name="eventbrite_v3.rb" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/models/eventbrite_v3.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5242464" vertical-offset="0" max-vertical-offset="763">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="736">
                   <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="search.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="search.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/search.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3584">
-                  <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+                <state vertical-scroll-proportion="0.6710354" vertical-offset="992" max-vertical-offset="4016">
+                  <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#41#0" expanded="false" />
                   </folding>
@@ -128,11 +128,11 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/models/text" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/app/models/eventbrite_v3.rb" />
         <option value="$PROJECT_DIR$/app/views/events/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/search.js" />
+        <option value="$PROJECT_DIR$/app/models/eventbrite_v3.rb" />
         <option value="$PROJECT_DIR$/app/controllers/events_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/search.js" />
       </list>
     </option>
   </component>
@@ -805,19 +805,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3584">
-          <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/eventbrite_v3.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5242464" vertical-offset="0" max-vertical-offset="763">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="736">
           <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
           <folding />
         </state>
@@ -825,9 +815,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/events_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14933333" vertical-offset="0" max-vertical-offset="750">
-          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.46933332" vertical-offset="0" max-vertical-offset="750">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6710354" vertical-offset="992" max-vertical-offset="4016">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
