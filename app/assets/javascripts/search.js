@@ -82,8 +82,8 @@ function writeEventListing($domElm, curEvent, i) {
     mbody.className = "media-body";
     h5.className    = "media-heading";
     h5.innerText    = i + ": " + curEvent.name.text;
-    $domElm[0].appendChild(media);
 
+    $domElm[0].appendChild(media);
     media.appendChild(a);
     if (curEvent.logo != null) {
         var img       = doc.createElement("img");
@@ -93,6 +93,9 @@ function writeEventListing($domElm, curEvent, i) {
     }
     media.appendChild(mbody);
     mbody.appendChild(h5);
+    var cat    = (curEvent.category != null)? curEvent.category.name : "";
+    var subCat = (curEvent.subcategory != null)? "/" + curEvent.subcategory.name + "<br>" : "";
+    $(mbody).append(cat + subCat);
     $(mbody).append("Start: " + formatDate12HR(curEvent.start.local) + "<br>");
     $(mbody).append("End:   " + formatDate12HR(curEvent.end.local));
 }
