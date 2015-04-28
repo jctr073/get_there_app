@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+file = __dir__ + "/states.txt"
+File.open(file, "r").each_line() do |line|
+  states = line.split("|")
+  State.create!(code: states[0], name: states[1].chomp)
+  p states[0].chomp
+end
