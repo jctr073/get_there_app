@@ -33,8 +33,7 @@ $(document).ready(function () {
     });
 
     $('#search').click(function(){
-
-        console.log(testFn());
+        
         $wel.addClass("hidden");
         $.ajax({
             type: "POST",

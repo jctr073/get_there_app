@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   require 'json'
 
   def index
+    @states = State.all.map { |s| [s.name, s.code] }
   end
 
   def search

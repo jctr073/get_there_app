@@ -21,7 +21,9 @@
                   <input id="city" type="text"/><br/>
 
                   <label for="state">State</label>
-                  <input id="state" type="text" value="CA"/><br/>
+
+                  <%= select_tag(:state, options_for_select(@states)) %>
+                  <!--<input id="state" type="text" value="CA"/><br/>-->
                 </form>
               </ul>
           </li>
