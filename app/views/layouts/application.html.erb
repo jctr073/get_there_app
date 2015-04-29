@@ -17,13 +17,14 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Location <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <form action="">
-                  <label for="city">City</label>
-                  <input id="city" type="text"/><br/>
-
-                  <label for="state">State</label>
-
-                  <%= select_tag(:state, options_for_select(@states)) %>
-                  <!--<input id="state" type="text" value="CA"/><br/>-->
+                  <div class="menu-form">
+                    <label for="city">City</label>
+                    <input id="city" type="text" class="form-control"/>
+                  </div>
+                  <div class="menu-form">
+                    <label for="state">State</label>
+                    <%= select_tag(:state, options_for_select(@states), :class => "form-control") %>
+                  </div>
                 </form>
               </ul>
           </li>
@@ -31,12 +32,14 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Date/Time <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <form action="">
-                <div class="form-group">
-                <label for="fromDt">From Date</label>
-                <input id="fromDt" type="date"/><br/>
+                <div class="menu-form">
+                    <label for="fromDt">From Date</label>
+                    <input id="fromDt" type="date" class="form-control"/>
                 </div>
-                <label for="toDt">To Date</label>
-                <input id="toDt" type="date"/><br/>
+                <div class="menu-form">
+                  <label for="toDt">To Date</label>
+                  <input id="toDt" type="date" class="form-control"/>
+                </div>
               </form>
             </ul>
           </li>
