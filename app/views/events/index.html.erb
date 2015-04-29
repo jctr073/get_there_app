@@ -13,46 +13,9 @@
         <p> </p>
         <h4>(Remember, you can always start over by clicking the clear button)</h4>
       </div>
-      <div>
-        <h3>Documentation</h3>
-        <h5>Creators: <strong>jctr073</strong> and <strong>danabase</strong></h5>
-        <h5>Documentation date: <strong>04/22/2015</strong></h5>
-       <h4> Objective:</h4>  
-        <ul>   
-          <li>Display current and/or ongoing events in preferred categories (i.e. conventions, fitness)
-              that are occurring... </li>
-          <li> in the city and state of the user's choice</li>
-          <li>during a particular calendar date or between a set of dates.</li>  <p></p>
-           These parameters are completely optional, which will trigger a default result.
-        </ul>   
-         <h4>Premise: </h4>
-           <ul>
-             <li>give users a choice of parameters to enter: location information from vague to specific (city level vs. street address level), date or time (from date x to date y, or just one date), and event category (live performance, sports, music, food, etc)</li>
-             <li>pull data--in this case, listed events from Eventbrite </li>
-             <li>plot each event as a marker on google maps, providing basic information on the event (venue name and address, time span)</li>
-           </ul>
-          
-       <h4>Process</h4> 
-             This process can be divided into 6 parts, as we start in the events controller and continue through a javascript file.<p></p>
-        <ol>
-          <li>Access the EventBrite client through an access-token, sending out a defined search customized by the user-generated parameters. 
-              The API will return a response, which the event controller's search method will format into a JSON object with a respond_to function.</li><p></p>
-          <li>In the event that a user--after providing a satisfactory contribution of  data compliant with our guidelines--clicks the search button, 
-              an ajax call is made. In this call, we specify the HTTP verb as "POST", the URL as "/search.json," the datatype as JSON, and the data 
-              as the values passed in parameters (category keywords, city, state, etc).</li><p></p>
-          <li>Contingent on receiving at least 1 object returned, we'll create a map centered on the LatLng of the first event retrieved. Moving on, 
-              this function will call another function, loadEvents.</li><p></p>
-          <li>In loadEvents, we create an event array and loop through each element, subsequently calling 2 functions to harvest the associated data.</li><p></p>
-          <li>The first function called is writeEventListing, which passes in the DOM element and current event. We pull up the event's logo, title, 
-              start and end dates and present them in the view. </li><p></p>
-          <li>The second function called, plotMapPoints, passes in the loop's iteration variable, the map and current event as parameters. here, we 
-              create a marker for the current event, labeling it with a sequentially-generated number. To accomplish this dynamically the pin URL needs 
-              to be divided into two variables and re-attached with the iteration variable in the middle. An infoWindow is created, complete with content, 
-              whose values were pulled from the current event object. Finally event handlers dealing with mouse interactions with infoWindows wraps up 
-              the process. </li><p></p>
-        </ol> 
-      </div>
+      <%=	render "documentation"  %>
     </div>
+    <div class="alert alert-success">test</div>
     <div class="row">
       <div class="col-md-4" id="event-list">
       </div>
