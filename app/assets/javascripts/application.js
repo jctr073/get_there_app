@@ -19,6 +19,7 @@
 
 $(document).ready(function () {
     $wel = $('#welcome');
+    $alt = $('div.alert');
     $elm = $('#event-list');
     $map = $('#map-canvas');
 
@@ -50,6 +51,7 @@ $(document).ready(function () {
             success: function (resp) {
                 console.log(resp);
                 if (resp.pagination.object_count > 0) {
+                    $alt.html(resp.pagination.object_count + " item(s) found");
                     // Setup map
                     var event1 = resp.events[0];
                     console.log(event1);
