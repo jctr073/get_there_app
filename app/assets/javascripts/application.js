@@ -36,6 +36,9 @@ $(document).ready(function () {
     $('#search').click(function(){
         
         $wel.addClass("hidden");
+        $alt[0].className = "alert alert-info";
+        $alt.html("Search in progress...")
+
         $.ajax({
             type: "POST",
             url: "/search.json",
@@ -50,8 +53,12 @@ $(document).ready(function () {
             },
             success: function (resp) {
                 console.log(resp);
-                if (resp.pagination.object_count > 0) {
-                    $alt.html(resp.pagination.object_count + " item(s) found");
+                var resultCount = resp.pagination.object_count;
+                if (resultCount > 0) {
+
+                    $alt[0].className = "alert alert-success";
+                    $alt.html(resultCount + " item(s) found");
+
                     // Setup map
                     var event1 = resp.events[0];
                     console.log(event1);
