@@ -73,7 +73,10 @@ $(document).ready(function () {
                 } else {
                     noResults();
                 }
-
+            },
+            error: function (resp) {
+                $alt[0].className = "alert alert-danger";
+                $alt.html(resp.status + ": " + resp.statusText);
             }
         });
     })
@@ -83,7 +86,8 @@ $(document).ready(function () {
 function noResults () {
     $elm.empty();
     $map.empty();
-    $elm.html("No results for search.");
+    $alt[0].className = "alert alert-warning";
+    $alt.html("No results for search.");
 }
 function loadEvents (resp, map) {
     $elm.empty();
