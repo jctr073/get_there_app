@@ -217,7 +217,6 @@ function plotMapPoints(itr, gmap, curEvent) {
             }, 1000);
         });
     });
-
 }
 
 
