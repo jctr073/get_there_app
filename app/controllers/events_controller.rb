@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     eb.add_param('start_date.range_start', con_date(params[:search][:fromDt]))
     eb.add_param('start_date.range_end', con_date(params[:search][:toDt]))
 
-    resp = eb.event_search
+    resp = eb.event_search(params[:page])
 
     respond_to do |format|
       format.json { render json: resp }

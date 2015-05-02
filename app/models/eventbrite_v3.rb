@@ -30,11 +30,12 @@ class EventbriteV3
     @params.to_query
   end
 
-  def event_search
+  def event_search(page = 1)
     url = @base_uri + 'events/search/?' +
         keywords + '&sort_by=date&' + params +
         '&token=' + @auth_token
 
+    url += '&page=' + page.to_s
     HTTParty.get(url)
   end
 

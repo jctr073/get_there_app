@@ -18,8 +18,11 @@
 //= require_tree .
 
 $(document).ready(function () {
+    thisPage = 1;
+    resultCount = 0;
     $wel = $('#welcome');
     $alt = $('div.alert');
+    $pgr = $('#event-pager-container');
     $elm = $('#event-list');
     $map = $('#map-canvas');
 
@@ -34,54 +37,80 @@ $(document).ready(function () {
     });
 
     $('#search').click(function(){
-        
-        $wel.addClass("hidden");
-        $alt[0].className = "alert alert-info";
-        $alt.html("Search in progress...")
+        getEvents();
+    });
 
-        $.ajax({
-            type: "POST",
-            url: "/search.json",
-            dataType: "json",
-            data: { search: {
+});
+
+function getEvents (page) {
+
+    var curPage = typeof page == 'undefined' ? 1 : page;
+    $wel.addClass("hidden");
+    $alt[0].className = "alert alert-info";
+    $alt.html("Search in progress...");
+
+    $.ajax({
+        type: "POST",
+        url: "/search.json",
+        dataType: "json",
+        data: { search: {
                 keywords: $('#keywords').val(),
                 city: $('#city').val(),
                 state: $('#state').val(),
                 fromDt: $('#fromDt').val(),
                 toDt: $('#toDt').val()
+            }, page: curPage
+        },
+        success: function (resp) {
+            console.log(resp);
+            var srchInfo = resp.pagination;
+            resultCount = srchInfo.object_count;
+            if (resultCount > 0) {
+
+                var alertMsg = resultCount + " item(s) found <br>";
+                alertMsg += "Showing page " + srchInfo.page_number;
+                alertMsg += " of " + srchInfo.page_count;
+
+                $alt[0].className = "alert alert-success";
+                $alt.html(alertMsg);
+                setPagination($pgr, srchInfo.page_count);
+
+                // Setup map
+                var event1 = resp.events[0];
+                console.log(event1);
+                var mapOptions = {
+                    center: { lat: Number(event1.venue.latitude), lng: Number(event1.venue.longitude)},
+                    zoom: 13
+                };
+                var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+                loadEvents(resp, map);
+            } else {
+                noResults();
             }
-            },
-            success: function (resp) {
-                console.log(resp);
-                var resultCount = resp.pagination.object_count;
-                if (resultCount > 0) {
+        },
+        error: function (resp) {
+            $alt[0].className = "alert alert-danger";
+            $alt.html(resp.status + ": " + resp.statusText);
+        }
+    });
+}
 
-                    $alt[0].className = "alert alert-success";
-                    $alt.html(resultCount + " item(s) found");
+function setPagination($eventPagerContainer, pageCount) {
+    var ul = document.createElement("ul");
+    ul.id = "pagination";
+    ul.className = "pagination-sm";
+    $eventPagerContainer.append(ul);
+    var showPageNumber = (pageCount > 10) ? 10 : pageCount;
 
-                    // Setup map
-                    var event1 = resp.events[0];
-                    console.log(event1);
-                    var mapOptions = {
-                        center: { lat: Number(event1.venue.latitude), lng: Number(event1.venue.longitude)},
-                        zoom: 13
-                    };
-                    var map = new google.maps.Map(document.getElementById('map-canvas'),
-                        mapOptions);
-
-                    loadEvents(resp, map);
-                } else {
-                    noResults();
-                }
-            },
-            error: function (resp) {
-                $alt[0].className = "alert alert-danger";
-                $alt.html(resp.status + ": " + resp.statusText);
-            }
-        });
-    })
-
-});
+    $('#pagination').twbsPagination({
+        totalPages: pageCount,
+        visiblePages: showPageNumber,
+        onPageClick: function (event, page) {
+            getEvents(page);
+        }
+    });
+}
 
 function noResults () {
     $elm.empty();
@@ -116,7 +145,7 @@ function writeEventListing(itr, domElm, curEvent) {
     h5.innerText    = itr + ": " + curEvent.name.text;
 
     //assemble elements
-    domElm.appendChild(media);
+    $(domElm).append(media);
     media.appendChild(a);
     if (curEvent.logo != null) {
         var img       = doc.createElement("img");
@@ -131,6 +160,7 @@ function writeEventListing(itr, domElm, curEvent) {
     $(mbody).append(cat + subCat);
     $(mbody).append("Start: " + formatDate12HR(curEvent.start.local) + "<br>");
     $(mbody).append("End:   " + formatDate12HR(curEvent.end.local));
+    $(domElm).append("<hr>");
 }
 
 function plotMapPoints(itr, gmap, curEvent) {
