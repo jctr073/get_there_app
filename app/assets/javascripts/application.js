@@ -28,6 +28,7 @@ $(document).ready(function () {
 
     $('#frmSearch').keypress(function (event) {
         if (event.which == 13) {
+            event.preventDefault();
             $('#search').trigger('click');
         }
     });
