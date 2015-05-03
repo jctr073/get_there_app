@@ -63,7 +63,6 @@ function getEvents (page) {
             }, page: curPage
         },
         success: function (resp) {
-            console.log(resp);
             var srchInfo = resp.pagination;
             resultCount = srchInfo.object_count;
             if (resultCount > 0) {
@@ -78,13 +77,17 @@ function getEvents (page) {
 
                 // Setup map
                 var event1 = resp.events[0];
-                console.log(event1);
                 var mapOptions = {
-                    center: { lat: Number(event1.venue.latitude), lng: Number(event1.venue.longitude)},
+                    center: {
+                        lat: Number(event1.venue.latitude),
+                        lng: Number(event1.venue.longitude)
+                    },
                     zoom: 13
                 };
-                var map = new google.maps.Map(document.getElementById('map-canvas'),
-                    mapOptions);
+                var map = new google.maps.Map(
+                    document.getElementById('map-canvas'),
+                    mapOptions
+                );
                 loadEvents(resp, map);
             } else {
                 noResults();

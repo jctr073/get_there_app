@@ -22,7 +22,7 @@
           <form action="">
             <div class="menu-form">
               <label for="fromDt">From Date</label>
-              <input id="fromDt" type="date" class="form-control"/>
+              <input id="fromDt" type="date" class="form-control" value="<%= Date.today.strftime('%Y-%m-%d').to_s %>"/>
             </div>
             <div class="menu-form">
               <label for="toDt">To Date</label>
