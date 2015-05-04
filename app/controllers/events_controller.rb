@@ -1,10 +1,13 @@
 class EventsController < ApplicationController
 
-  require 'eventbrite-client'
-  require 'json'
+  # require 'eventbrite-client'
+  # require 'json'
 
   def index
     @states = State.all.map { |s| [s.name, s.code] }
+  end
+
+  def show
   end
 
   def search
