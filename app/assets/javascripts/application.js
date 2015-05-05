@@ -138,6 +138,7 @@ function writeEventListing(itr, domElm, curEvent) {
     var doc     = window.document;
     var media   = doc.createElement("div");
     var a       = doc.createElement("a");
+    var a2      = doc.createElement("a");
     var mbody   = doc.createElement("div");
     var h5      = doc.createElement("h5");
 
@@ -158,7 +159,9 @@ function writeEventListing(itr, domElm, curEvent) {
         a.appendChild(img);
     }
     media.appendChild(mbody);
-    mbody.appendChild(h5);
+    a2.appendChild(h5);
+    a2.href = "/events/" + curEvent.id;
+    mbody.appendChild(a2);
     var cat    = (curEvent.category != null)? curEvent.category.name : "";
     var subCat = (curEvent.subcategory != null)? "/" + curEvent.subcategory.name + "<br>" : "";
     $(mbody).append(cat + subCat);
