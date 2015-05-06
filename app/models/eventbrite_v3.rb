@@ -39,4 +39,8 @@ class EventbriteV3
     HTTParty.get(url)
   end
 
+  def event(id)
+    url = "#{@base_uri}/events/#{id}/?token=#{@auth_token}"
+    HTTParty.get(url)
+  end
 end

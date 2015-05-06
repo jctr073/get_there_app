@@ -8,6 +8,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    eb = EventbriteV3.new
+    @event = eb.event(params[:id])
   end
 
   def search

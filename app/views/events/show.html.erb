@@ -1,1 +1,12 @@
-<h1>hello events/show: <%= params[:id] %></h1>
+<div class="container">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @event['name']['text'] %></dd>
+      <dt>description</dt>
+      <dd><%= @event['description']['text'] %></dd>
+    </dl>
+  </div>
+</div>
+
+<pre><%= pp @event %></pre>
