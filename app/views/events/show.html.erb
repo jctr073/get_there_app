@@ -13,6 +13,13 @@
       <dd><%= @event['description']['text'] %></dd>
       <dt>Venue</dt>
       <dd><%= @event['venue']['name'] %></dd>
+      <dt>Address</dt>
+      <dd>
+        <%=	@event['venue']['address']['address_1'] %> <br/>
+        <%=	@event['venue']['address']['city'] %>
+        <%= @event['venue']['address']['region'] %>,
+        <%= @event['venue']['address']['postal_code'] %>
+      </dd>
     </dl>
   </div>
 </div>
