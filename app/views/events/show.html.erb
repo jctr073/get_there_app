@@ -24,6 +24,10 @@
         <%= @event['venue']['address']['region'] %>,
         <%= @event['venue']['address']['postal_code'] %>
       </dd>
+      <dt>Tickets</dt>
+      <dd>
+        <%= @event['ticket_classes'][0]['name'] %>
+      </dd>
     </dl>
   </div>
 </div>
