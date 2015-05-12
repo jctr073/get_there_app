@@ -26,7 +26,20 @@
       </dd>
       <dt>Tickets</dt>
       <dd>
-        <%= @event['ticket_classes'][0]['name'] %>
+        <table class="table table-bordered">
+          <tr>
+            <th>Ticket</th>
+            <th>Cost</th>
+            <th>Fee</th>
+          </tr>
+          <% @event['ticket_classes'].each do |ticket| %>
+            <tr>
+              <td><%= ticket['name'] %></td>
+              <td><%= (ticket['free'])? 'Free' : ticket['cost']['display'] %></td>
+              <td><%= (ticket['free'])? 'None' : ticket['fee']['display'] %></td>
+            </tr>
+          <% end %>
+        </table>
       </dd>
     </dl>
   </div>
