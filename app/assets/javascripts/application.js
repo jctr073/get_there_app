@@ -18,6 +18,11 @@
 //= require_tree .
 
 $(document).ready(function () {
+
+    //set default values
+    $('#state').val('CA');
+    $('#city').val('San Francisco');
+
     thisPage = 1;
     resultCount = 0;
     $wel = $('#welcome');
