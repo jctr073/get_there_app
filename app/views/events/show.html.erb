@@ -1,5 +1,8 @@
 <div class="container">
-  <div class="col-md-12">
+  <div class="col-md-4">
+    <%= image_tag @event['logo']['url'] %>
+  </div>
+  <div class="col-md-8">
     <h2 class="text-center">
       <%= @event['name']['text'] %> <br/>
       <small><%= long_datetime(@event['start']['local']) %></small>
