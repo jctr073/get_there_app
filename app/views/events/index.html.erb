@@ -1,27 +1,31 @@
 <%=	render "nav"  %>
-<div class="col-md-12" id="welcome">
-      <div class="jumbotron">
-        <h1>Welcome!</h1>
-        <p>1. Please enter one or more of the following:</p>
-        <ul>
-          <li>Some location details (city, state)</li>
-          <li>A date, or pair of dates
-          <li>An event category ("music," "sports," etc.)</li>
-          
-        </ul>
-        <p>2. Click the search button, and let the fun begin!</p>
-        <p> </p>
-        <h4>(Remember, you can always start over by clicking the clear button)</h4>
-      </div>
-      <%=	render "documentation"  %>
-    </div>
-    <div class="alert alert-info hidden"></div>
-    <div class="row">
-      <div class="col-md-12" id="event-pager-container">
+    <div class="col-md-12" id="welcome">
+          <div class="jumbotron">
+            <h2>
+              Welcome to GetThereApp <br/>
+              <small>
+                Never again miss out on an event in your area.
+              </small>
+            </h2>
+            <p>1. Please enter one or more of the following:</p>
+            <ul>
+              <li>Some location details (city, state)</li>
+              <li>A date, or pair of dates
+              <li>An event category ("music," "sports," etc.)</li>
 
-      </div>
-      <div class="col-md-4" id="event-list"></div>
-      <div id="map-canvas" class="col-md-8"></div>
-    </div>
-
+            </ul>
+            <p>2. Click the search button, and let the fun begin!</p>
+            <p> </p>
+            <h4>(Remember, you can always start over by clicking the clear button)</h4>
+          </div>
+          <!--<%=	render "documentation"  %> -->
+        </div>
+        <div class="alert alert-info hidden"></div>
+        <div class="row">
+          <div class="col-md-12" id="event-pager-container"></div>
+          <div class="col-md-4" id="event-list"></div>
+          <div id="map-canvas" class="col-md-8"></div>
+        </div>
+    </div> <!--welcome -->
+</div> <!--container -->
 
