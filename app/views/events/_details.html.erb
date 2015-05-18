@@ -1,0 +1,36 @@
+<dl class="dl-horizontal">
+  <dt>Category</dt>
+  <% if !@event['category'].nil? %>
+      <dd><%= @event['category']['name'] %></dd>
+  <% else %>
+      <dd>none</dd>
+  <% end %>
+  <dt>Venue</dt>
+  <dd><%= @event['venue']['name'] %></dd>
+  <dt>Address</dt>
+  <dd>
+    <%=	@event['venue']['address']['address_1'] %> <br/>
+    <%=	@event['venue']['address']['city'] %>
+    <%= @event['venue']['address']['region'] %>,
+    <%= @event['venue']['address']['postal_code'] %>
+  </dd>
+  <dt>Tickets</dt>
+  <dd>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>Description</th>
+        <th>Cost</th>
+        <th>Fee</th>
+      </tr>
+      <% @event['ticket_classes'].each do |ticket| %>
+          <tr>
+            <td><%= ticket['name'] %></td>
+            <td><%= (ticket['free'])? 'Free' : ticket['cost']['display'] unless ticket['cost'].nil? %></td>
+            <td><%= (ticket['free'])? 'None' : ticket['fee']['display'] unless ticket['cost'].nil? %></td>
+          </tr>
+      <% end %>
+    </table>
+  </dd>
+  <dt>Description</dt>
+  <dd><%= @event['description']['text'] %></dd>
+</dl>
