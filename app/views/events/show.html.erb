@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col-md-4">
-    <%= image_tag @event['logo']['url'] %>
+    <%= image_tag @event['logo']['url'] unless @event['logo'].nil? %>
   </div>
   <div class="col-md-8">
     <h2 class="text-center">

@@ -43,6 +43,7 @@ $(document).ready(function () {
     });
 
     $('#search').click(function(){
+        $('#btn-collapse-1').trigger('click'); //Collapse menu
         getEvents();
     });
 
