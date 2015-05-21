@@ -79,7 +79,10 @@ function getEvents (page) {
 
                 $alt[0].className = "alert alert-success";
                 $alt.html(alertMsg);
-                setPagination($pgr, srchInfo.page_count);
+                //console.log(srchInfo.page_count);
+                if (srchInfo.page_count > 1) {
+                    setPagination($pgr, srchInfo.page_count);
+                }
 
                 // Setup map
                 var event1 = resp.events[0];
